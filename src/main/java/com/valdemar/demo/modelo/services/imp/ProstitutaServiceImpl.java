@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 public class ProstitutaServiceImpl implements ProstitutaService {
     @Autowired
@@ -16,6 +18,13 @@ public class ProstitutaServiceImpl implements ProstitutaService {
     @Override
     public Mono<Prostituta> save(Prostituta prostituta) {
         return prostitutaDao.save(prostituta);
+    }
+
+
+
+    @Override
+    public Flux<Prostituta> saveAll(Flux<Prostituta> prostituta) {
+        return prostitutaDao.saveAll(prostituta);
     }
 
     @Override
