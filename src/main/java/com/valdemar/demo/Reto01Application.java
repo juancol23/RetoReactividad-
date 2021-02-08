@@ -36,6 +36,8 @@ public class Reto01Application implements CommandLineRunner{
 		.flatMap(prostitutaService::save)
 		.subscribe(prostituta -> log.info("insert: "+prostituta.getPseudoNombre()));
 		*/
+
+		System.out.println("Hola Jimmy!!!!");
 	}
 
 }

@@ -50,10 +50,16 @@ public class ProstitutaHandler {
         Flux<Prostituta> prostitutaFlux = request.bodyToFlux(Prostituta.class);
 
         return prostitutaFlux
-                .flatMap(p -> prostitutaService.save(p))
+                .flatMap(p -> {
+                    log.info("PseuNombre: "+p.getPseudoNombre());
+                    log.info("Tarifa: "+p.getTarifa());
+                    log.info("Estado: "+p.getEstado());
+                    return prostitutaService.save(p);
+                })
                 .flatMap(flat -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromValue(flat))).next();
+                        .body(BodyInserters.fromValue("Se registró correctamente la lista")))
+                .next().switchIfEmpty(ServerResponse.notFound().build());
     }
 
 
