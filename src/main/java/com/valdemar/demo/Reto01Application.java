@@ -27,15 +27,15 @@ public class Reto01Application implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		mongoTemplate.dropCollection("prostituta").subscribe();
-
+		//mongoTemplate.dropCollection("prostituta").subscribe();
+/*
  		Flux.just(new Prostituta("Vanessa",true,130.00),
 				new Prostituta("Miluska",true,230.00),
 				new Prostituta("Sofia",true,500.00),
 				new Prostituta("Katherine",true,90.00))
 		.flatMap(prostitutaService::save)
 		.subscribe(prostituta -> log.info("insert: "+prostituta.getPseudoNombre()));
-		
+		*/
 	}
 
 }
