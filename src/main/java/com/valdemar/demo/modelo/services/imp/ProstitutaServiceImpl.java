@@ -1,14 +1,12 @@
 package com.valdemar.demo.modelo.services.imp;
 
 import com.valdemar.demo.modelo.dao.ProstitutaDao;
-import com.valdemar.demo.modelo.documents.Prostituta;
+import com.valdemar.demo.modelo.entidad.Prostituta;
 import com.valdemar.demo.modelo.services.ProstitutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 @Service
 public class ProstitutaServiceImpl implements ProstitutaService {

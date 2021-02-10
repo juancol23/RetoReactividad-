@@ -1,11 +1,9 @@
 package com.valdemar.demo.handler;
 
-import com.valdemar.demo.modelo.documents.Prostituta;
 import com.valdemar.demo.modelo.services.ProstitutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.*;
 
 @Configuration
