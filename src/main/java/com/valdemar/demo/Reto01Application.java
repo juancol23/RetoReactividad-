@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.r2dbc.connectionfactory.init.DatabasePopulatorUtils;
 import org.springframework.data.r2dbc.connectionfactory.init.ResourceDatabasePopulator;
+import org.springframework.web.reactive.config.CorsRegistry;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 @SpringBootApplication
 public class Reto01Application implements CommandLineRunner{
@@ -45,5 +48,16 @@ public class Reto01Application implements CommandLineRunner{
 		DatabasePopulatorUtils.execute(databasePopulator, connectionFactory).block();
 
 	}
+
+	@Bean
+	public WebFluxConfigurer corsConfigurer() {
+		return new WebFluxConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("*");
+			}
+		};
+	}
+
 
 }
