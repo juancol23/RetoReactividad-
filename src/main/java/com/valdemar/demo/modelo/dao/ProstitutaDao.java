@@ -1,8 +1,8 @@
 package com.valdemar.demo.modelo.dao;
 
-import com.valdemar.demo.modelo.documents.Prostituta;
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import com.valdemar.demo.modelo.entidad.Prostituta;
+import org.springframework.data.r2dbc.repository.R2dbcRepository;
 
-public interface ProstitutaDao extends ReactiveMongoRepository<Prostituta,String> {
+public interface ProstitutaDao extends R2dbcRepository<Prostituta,String> {
 
 }

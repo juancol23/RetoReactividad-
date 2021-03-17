@@ -1,15 +1,19 @@
 package com.valdemar.demo;
 
-import com.valdemar.demo.modelo.documents.Prostituta;
 import com.valdemar.demo.modelo.services.ProstitutaService;
+import io.r2dbc.spi.ConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
-import reactor.core.publisher.Flux;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.r2dbc.connectionfactory.init.DatabasePopulatorUtils;
+import org.springframework.data.r2dbc.connectionfactory.init.ResourceDatabasePopulator;
+import org.springframework.web.reactive.config.CorsRegistry;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 @SpringBootApplication
 public class Reto01Application implements CommandLineRunner{
@@ -17,7 +21,10 @@ public class Reto01Application implements CommandLineRunner{
 	private ProstitutaService prostitutaService;
 
 	@Autowired
-	private ReactiveMongoTemplate mongoTemplate;
+	ConnectionFactory connectionFactory;
+
+	//@Autowired
+	//private ReactiveMongoTemplate mongoTemplate;
 	private static final Logger log = LoggerFactory.getLogger(Reto01Application.class);
 	
 	public static void main(String[] args) {
@@ -27,14 +34,20 @@ public class Reto01Application implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		mongoTemplate.dropCollection("prostituta").subscribe();
+		ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator(new ClassPathResource("schema.sql"));
+		DatabasePopulatorUtils.execute(databasePopulator, connectionFactory).block();
 
- 		Flux.just(new Prostituta("Vanessa",true,130.00),
-				new Prostituta("Miluska",true,230.00),
-				new Prostituta("Sofia",true,500.00),
-				new Prostituta("Katherine",true,90.00))
-		.flatMap(prostitutaService::save)
-		.subscribe(prostituta -> log.info("insert: "+prostituta.getPseudoNombre()));
 	}
+
+	@Bean
+	public WebFluxConfigurer corsConfigurer() {
+		return new WebFluxConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("*");
+			}
+		};
+	}
+
 
 }

@@ -1,23 +1,25 @@
-package com.valdemar.demo.modelo.documents;
+package com.valdemar.demo.modelo.entidad;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "prostituta")
+@Table("prostituta")
 public class Prostituta {
 	
 	@Id
 	private String id;
+	@Column("pseudoNombre")
 	private String pseudoNombre;
 	private Boolean estado;
 	private Double tarifa;
@@ -31,3 +33,5 @@ public class Prostituta {
 		this.tarifa = tarifa;
 	}
 }
+
+

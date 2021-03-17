@@ -1,7 +1,7 @@
 package com.valdemar.demo.modelo.services.imp;
 
 import com.valdemar.demo.modelo.dao.ProstitutaDao;
-import com.valdemar.demo.modelo.documents.Prostituta;
+import com.valdemar.demo.modelo.entidad.Prostituta;
 import com.valdemar.demo.modelo.services.ProstitutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,13 @@ public class ProstitutaServiceImpl implements ProstitutaService {
     @Override
     public Mono<Prostituta> save(Prostituta prostituta) {
         return prostitutaDao.save(prostituta);
+    }
+
+
+
+    @Override
+    public Flux<Prostituta> saveAll(Flux<Prostituta> prostituta) {
+        return prostitutaDao.saveAll(prostituta);
     }
 
     @Override
