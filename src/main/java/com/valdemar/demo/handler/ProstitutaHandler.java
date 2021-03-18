@@ -71,6 +71,13 @@ public class ProstitutaHandler {
 
 
 
+    public Mono<ServerResponse> findById(ServerRequest request){
+        String id = request.pathVariable("id");
+        return ServerResponse
+                .ok()
+                .contentType(MediaType.APPLICATION_PROBLEM_JSON_UTF8)
+                .body(prostitutaService.findById(id), Prostituta.class);
+    }
 
 
 }

@@ -31,4 +31,8 @@ public class ProstitutaServiceImpl implements ProstitutaService {
     public Flux<Prostituta> findAll() {
         return prostitutaDao.findAll();
     }
+    @Override
+    public Mono<Prostituta> findById(String request) {
+        return prostitutaDao.findById(request);
+    }
 }
