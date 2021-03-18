@@ -11,4 +11,9 @@ public interface ProstitutaService {
     Flux<Prostituta> saveAll(Flux<Prostituta>prostituta);
 
     Flux <Prostituta> findAll();
+
+    Mono<Prostituta> findById(String request);
+
+
+
 }
