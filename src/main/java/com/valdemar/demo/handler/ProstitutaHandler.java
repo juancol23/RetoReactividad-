@@ -43,17 +43,24 @@ public class ProstitutaHandler {
     public Mono<ServerResponse> crearList(ServerRequest request) {
         Flux<Prostituta> prostitutaFlux = request.bodyToFlux(Prostituta.class);
 
-        return prostitutaFlux
+        return prostitutaFlux.collectList()
+                .map(data->data)
                 .flatMap(p -> {
-                    log.info("PseuNombre: "+p.getPseudoNombre());
-                    log.info("Tarifa: "+p.getTarifa());
-                    log.info("Estado: "+p.getEstado());
-                    return prostitutaService.save(p);
+                    if(p.size() > 0){
+                        p.parallelStream().forEach(response -> {
+                            prostitutaService.save(response).subscribe();
+                            log.info("PseuNombre: "+response.getPseudoNombre());
+                            log.info("Tarifa: "+response.getTarifa());
+                            log.info("Estado: "+response.getEstado());
+                        });
+                    }
+
+                    return Mono.just(p);
+
                 })
                 .flatMap(flat -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromValue("Se registró correctamente la lista")))
-                .next().switchIfEmpty(ServerResponse.notFound().build());
+                        .body(BodyInserters.fromValue("Se registró correctamente la lista")));
     }
 
 
