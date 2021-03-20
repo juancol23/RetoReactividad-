@@ -35,4 +35,12 @@ public class ProstitutaServiceImpl implements ProstitutaService {
     public Mono<Prostituta> findById(String request) {
         return prostitutaDao.findById(request);
     }
+
+    @Override
+    public Mono<Void> delete(Prostituta prostituta) {
+       return prostitutaDao.delete(prostituta);
+
+    }
+
+
 }

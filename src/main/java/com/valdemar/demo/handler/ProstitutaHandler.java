@@ -1,5 +1,6 @@
 package com.valdemar.demo.handler;
 
+import com.mongodb.internal.connection.Server;
 import com.valdemar.demo.modelo.documents.Prostituta;
 import com.valdemar.demo.modelo.services.ProstitutaService;
 import org.slf4j.Logger;
@@ -91,6 +92,12 @@ public class ProstitutaHandler {
                 .switchIfEmpty(ServerResponse.notFound().build());
 
     }
+    public Mono<ServerResponse> delete(ServerRequest request){
+        String id = request.pathVariable("id");
+        Mono<Prostituta> prostitutaDb = prostitutaService.findById(id);
 
+        return prostitutaDb.flatMap(p->prostitutaService.delete(p).then(ServerResponse.noContent().build()));
+
+    };
 
 }

@@ -14,4 +14,6 @@ public interface ProstitutaService {
 
     Flux <Prostituta> findAll();
     Mono<Prostituta> findById(String request);
+
+    public Mono<Void> delete(Prostituta prostituta);
 }
