@@ -1,5 +1,6 @@
 package com.valdemar.demo.modelo.documents;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -14,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "prostituta")
-public class Prostituta {
+public class Prostituta implements Serializable {
 	
 	@Id
 	private String id;

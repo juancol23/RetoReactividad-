@@ -18,7 +18,9 @@ public class RouterFunctionConfig {
 
         return RouterFunctions.route(RequestPredicates.GET("/api/v1/prostitutas"),handler::listar)
         .andRoute(RequestPredicates.POST("/api/v1/prostitutas"), handler::crearList)
-                .andRoute(RequestPredicates.GET("/api/v1/prostitutas/{id}"),handler::findById);
+                .andRoute(RequestPredicates.GET("/api/v1/prostitutas/{id}"),handler::findById)
+        .andRoute(RequestPredicates.PUT("/api/v1/prostitutas/{id}"),handler::update);
+
 
     }
 
