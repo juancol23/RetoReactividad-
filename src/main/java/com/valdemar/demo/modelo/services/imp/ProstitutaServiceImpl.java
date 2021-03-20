@@ -42,5 +42,10 @@ public class ProstitutaServiceImpl implements ProstitutaService {
 
     }
 
+    @Override
+    public Mono<Void> deleteList() {
+        return prostitutaDao.deleteAll();
+    }
+
 
 }

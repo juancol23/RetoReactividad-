@@ -100,4 +100,13 @@ public class ProstitutaHandler {
 
     };
 
+    public Mono<ServerResponse> deleteList(ServerRequest request){
+        prostitutaService.deleteList().subscribe();
+        return ServerResponse
+                .ok()
+                .contentType(MediaType.APPLICATION_PROBLEM_JSON_UTF8)
+                .body(BodyInserters.fromValue("Se eliminó toda la lista"));
+
+    };
+
 }
