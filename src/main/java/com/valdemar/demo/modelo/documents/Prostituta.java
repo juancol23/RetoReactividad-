@@ -31,4 +31,7 @@ public class Prostituta implements Serializable {
 		this.estado = estado;
 		this.tarifa = tarifa;
 	}
+
+
+
 }

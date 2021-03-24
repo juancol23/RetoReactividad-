@@ -9,12 +9,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
 @SpringBootApplication
 public class Reto01Application implements CommandLineRunner{
-	@Autowired
-	private ProstitutaService prostitutaService;
+
 
 	@Autowired
 	private ReactiveMongoTemplate mongoTemplate;
@@ -27,17 +27,7 @@ public class Reto01Application implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		//mongoTemplate.dropCollection("prostituta").subscribe();
-/*
- 		Flux.just(new Prostituta("Vanessa",true,130.00),
-				new Prostituta("Miluska",true,230.00),
-				new Prostituta("Sofia",true,500.00),
-				new Prostituta("Katherine",true,90.00))
-		.flatMap(prostitutaService::save)
-		.subscribe(prostituta -> log.info("insert: "+prostituta.getPseudoNombre()));
-		*/
-
-		System.out.println("Hola Jimmy!!!!");
 	}
+
 
 }
