@@ -47,5 +47,10 @@ public class ProstitutaServiceImpl implements ProstitutaService {
         return prostitutaDao.deleteAll();
     }
 
+    @Override
+    public Mono<Prostituta> findByPseudoNombre(String pseudoNombre) {
+        return prostitutaDao.findByPseudoNombre(pseudoNombre);
+    }
+
 
 }

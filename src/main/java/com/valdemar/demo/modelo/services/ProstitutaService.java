@@ -18,4 +18,8 @@ public interface ProstitutaService {
     public Mono<Void> delete(Prostituta prostituta);
 
     public Mono<Void> deleteList();
+
+    public Mono<Prostituta> findByPseudoNombre(String pseudoNombre);
+
+
 }

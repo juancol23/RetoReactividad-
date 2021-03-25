@@ -35,7 +35,6 @@ public class RetoServidorApplication implements CommandLineRunner{
 		.subscribe(prostituta -> log.info("insert: "+prostituta.getPseudoNombre()));
 		*/
 
-		System.out.println("Hola Jimmy!!!!");
 	}
 
 }
