@@ -2,15 +2,11 @@ package com.valdemar.demo;
 
 import com.valdemar.demo.modelo.documents.Prostituta;
 import com.valdemar.demo.modelo.services.ProstitutaService;
-import org.assertj.core.api.AssertionsForClassTypes;
-import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.util.Collections;
