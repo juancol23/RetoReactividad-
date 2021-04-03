@@ -14,6 +14,8 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 
+import java.util.Date;
+
 @Component
 public class ProstitutaHandler {
     private static final Logger log = LoggerFactory.getLogger(ProstitutaHandler.class);
@@ -33,7 +35,12 @@ public class ProstitutaHandler {
 
     public Mono<ServerResponse> crear(ServerRequest request){
         Mono<Prostituta> prostituta = request.bodyToMono(Prostituta.class);
-
+        prostituta.map(p->{
+           if(p.getCreateAt() == null) {
+               p.setCreateAt(new Date());
+           }
+            return p;
+        });
         return prostituta.flatMap(p -> {
                     return prostitutaService.save(p);
                 }).flatMap(p -> ServerResponse.ok().contentType(MediaType.APPLICATION_PROBLEM_JSON_UTF8)
@@ -49,6 +56,9 @@ public class ProstitutaHandler {
                 .flatMap(p -> {
                     if(p.size() > 0){
                         p.parallelStream().forEach(response -> {
+                            if(response.getCreateAt() == null) {
+                                response.setCreateAt(new Date());
+                            }
                             prostitutaService.save(response).subscribe();
                             log.info("PseuNombre: "+response.getPseudoNombre());
                             log.info("Tarifa: "+response.getTarifa());
