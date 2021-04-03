@@ -22,4 +22,5 @@ public interface ProstitutaService {
     public Mono<Prostituta> findByPseudoNombre(String pseudoNombre);
 
 
+    Flux<Prostituta> findByTarifa(Double tarifa);
 }

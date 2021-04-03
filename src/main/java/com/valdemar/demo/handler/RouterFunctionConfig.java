@@ -21,7 +21,9 @@ public class RouterFunctionConfig {
             .andRoute(RequestPredicates.GET("/api/v1/prostitutas/{id}"),handler::findById)
             .andRoute(RequestPredicates.PUT("/api/v1/prostitutas/{id}"),handler::update)
                 .andRoute(RequestPredicates.DELETE("/api/v1/prostitutas/{id}"),handler::delete)
-            .andRoute(RequestPredicates.DELETE("/api/v1/prostitutas"),handler::deleteList);
+            .andRoute(RequestPredicates.DELETE("/api/v1/prostitutas"),handler::deleteList)
+                .andRoute(RequestPredicates.GET("/api/v1/prostitutas/tarifa/{tarifa}"),handler::findByTarifa)
+                ;
 
     }
 

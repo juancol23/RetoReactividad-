@@ -109,4 +109,13 @@ public class ProstitutaHandler {
 
     };
 
+    public Mono<ServerResponse> findByTarifa(ServerRequest request) {
+
+        String tarifa = request.pathVariable("tarifa");
+        Double tarifaParseDouble = Double.valueOf(tarifa);
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .body(prostitutaService.findByTarifa(tarifaParseDouble),Prostituta.class);
+    }
+
 }

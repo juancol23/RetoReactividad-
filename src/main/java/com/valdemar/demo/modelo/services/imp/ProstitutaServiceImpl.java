@@ -52,5 +52,10 @@ public class ProstitutaServiceImpl implements ProstitutaService {
         return prostitutaDao.findByPseudoNombre(pseudoNombre);
     }
 
+    @Override
+    public Flux<Prostituta> findByTarifa(Double tarifa) {
+        return prostitutaDao.findByTarifa(tarifa);
+    }
+
 
 }
