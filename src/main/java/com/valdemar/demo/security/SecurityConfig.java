@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
-@EnableWebFluxSecurity
+//@EnableWebFluxSecurity
 public class SecurityConfig {
-
+/*
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
@@ -34,6 +34,6 @@ public class SecurityConfig {
                 .build();
         return new MapReactiveUserDetailsService(user);
     }
-
+*/
 
 }
